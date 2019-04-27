@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+   
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./style.css">
+    <title>Document</title>
+</head>
+<body>
+        <script  src="./jquery-3.2.1.js"></script>
+        <script  src="./main.js"></script>
+    <div class="window">
+    <div class="images">
+        <img src="./images/red.jpg" width="330" height="200" alt="图片">
+        <img src="./images/blue.jpg" width="330" height="200" alt="图片">
+        <img src="./images/green.jpg" width="330" height="200" alt="图片">
+    </div>
+    </div>
+
+    <script>
+    let n=1
+    initialise() //初始化
+    carryout() //执行
+    
+
+    
+    function carryout(){
+        setInterval(()=>{
+        $(`.images>img:nth-child(${x(n)})`).removeClass('current').addClass('leave')
+        .one('transitionend',(e)=>{$( e.currentTarget).removeClass('leave').addClass('enter')})
+        $(`.images>img:nth-child(${x(n+1)})`).removeClass('enter').addClass('current')
+        n +=1
+    },2000)}
+    
+    function x(n){
+        if(n>3){   
+        n=n%3
+        if(n===0){n=3}}
+        return n}
+
+    function initialise(){
+    $(`.images > img:nth-child(${n})`).addClass('current')
+    .siblings().addClass('enter')}
+  
+    </script>
+</body>
+</html>
